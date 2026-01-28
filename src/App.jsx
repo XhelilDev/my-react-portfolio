@@ -40,8 +40,8 @@ const projectsData = [
     description: "A digital platform for book management created with React. Users can browse books, view details, and manage inventory. Demonstrates complex state management and component architecture.",
     tags: ["React", "CSS Modules", "API Integration"],
     icon: <Book size={24} className="text-cyan-600 dark:text-cyan-400" />,
-    link: "#",
-    github: "#"
+    link: "https://github.com/XhelilDev/online-library-react",
+    github: "https://github.com/XhelilDev/online-library-react"
   },
   {
     id: 2,
@@ -49,8 +49,8 @@ const projectsData = [
     description: "Task management application featuring add, delete, and completion toggle functionalities. Fully responsive design using Tailwind CSS and persists data using Local Storage.",
     tags: ["React", "Tailwind CSS", "Local Storage"],
     icon: <CheckSquare size={24} className="text-teal-600 dark:text-teal-400" />,
-    link: "#",
-    github: "#"
+    link: "https://xhelildev.github.io/react-todo-list-app/",
+    github: "https://github.com/XhelilDev/react-todo-list-app"
   },
   {
     id: 3,
@@ -58,8 +58,8 @@ const projectsData = [
     description: "Functional shopping cart logic built with Vanilla JavaScript. Features dynamic price calculation, item removal, and DOM manipulation without any frameworks.",
     tags: ["JavaScript", "CSS3", "DOM Manipulation"],
     icon: <ShoppingCart size={24} className="text-yellow-600 dark:text-yellow-400" />,
-    link: "#",
-    github: "#"
+    link: "https://xhelildev.github.io/shoping-cart/",
+    github: "https://github.com/XhelilDev/shoping-cart"
   },
   {
     id: 4,
@@ -67,8 +67,8 @@ const projectsData = [
     description: "A collection of my foundational projects including landing pages, static websites, and layout experiments using Flexbox and CSS Grid.",
     tags: ["HTML5", "CSS3", "Responsive Design"],
     icon: <Code2 size={24} className="text-orange-600 dark:text-orange-400" />,
-    link: "#",
-    github: "#"
+    link: "https://xhelildev.github.io/Webdev-Akademi/",
+    github: "https://github.com/XhelilDev/Webdev-Akademi"
   }
 ];
 
@@ -79,7 +79,7 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, isDarkMode, toggleTheme }) => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex items-center justify-between h-16">
         <div className="flex-shrink-0 font-bold text-2xl text-cyan-600 dark:text-cyan-400 cursor-pointer">
-          DevPortfolio<span className="text-slate-800 dark:text-white">.</span>
+          Xhelil Xhelili<span className="text-slate-800 dark:text-white"></span>
         </div>
         
         {/* Desktop Menu */}
@@ -314,9 +314,25 @@ const Footer = () => (
 
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true);
 
-  // FIX: Use useEffect to toggle class on the HTML element
+  // FUNKSIONI I RI: Vendos klasën 'dark' menjëherë për të parandaluar FOUC-un
+  const getInitialThemeState = () => {
+      // Vendos Dark Mode si default (true)
+      const defaultDark = true; 
+      
+      // Aplikimi sinkron i klasës 'dark' para renderimit të parë të React
+      if (defaultDark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      return defaultDark;
+  };
+
+  // Përdorimi i funksionit për inicializimin e state-it
+  const [isDarkMode, setIsDarkMode] = useState(getInitialThemeState);
+
+  // useEffect tani shërben vetëm për të menaxhuar ndërrimin pas klikimit
   useEffect(() => {
     const html = document.documentElement;
     if (isDarkMode) {
